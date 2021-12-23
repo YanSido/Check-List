@@ -1,5 +1,10 @@
 import React from "react";
+import WorkerForm from "./WorkerForm";
 
 export default function Main() {
-  return <div></div>;
+  return (
+    <div>
+      <WorkerForm />
+    </div>
+  );
 }

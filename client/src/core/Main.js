@@ -1,4 +1,5 @@
 import React from "react";
+import AddItem from "./AddItem";
 import EquipmentList from "./EquipmentList";
 import WorkerForm from "./WorkerForm";
 
@@ -8,6 +9,7 @@ export default function Main() {
       <WorkerForm />
       <hr />
       <EquipmentList />
+      <AddItem />
     </div>
   );
 }

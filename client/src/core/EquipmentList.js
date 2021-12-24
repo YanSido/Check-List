@@ -25,6 +25,7 @@ export default function EquipmentList() {
                 <td>{equipment.fullQuantity}</td>
                 <td>
                   <input
+                    class="text-center"
                     type="text"
                     id="lquantity"
                     name="lquantity"

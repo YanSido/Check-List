@@ -1,9 +1,13 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Container } from "react-bootstrap";
-import { fullEquipmentList } from "../db/equipment";
+import { filterList } from "../contexts/actions";
 
 export default function EquipmentList() {
+  const dispatch = useDispatch();
+  const fullEquipmentList = useSelector((state) => state);
   const [missing, setMissing] = useState(0);
+
   return (
     <Container>
       <table class="table table-hover table-dark text-center">

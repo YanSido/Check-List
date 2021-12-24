@@ -39,9 +39,6 @@ export default function WorkerForm() {
           <input type="date" name="party" min="2017-04-01" max="2022-04-20" required />
           <span class="validity"></span>
         </div>
-        <button type="submit" class="btn btn-primary">
-          Submit
-        </button>
       </form>
     </Container>
   );

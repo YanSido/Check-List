@@ -1,6 +1,7 @@
 import React from "react";
 import AddItem from "./AddItem";
 import EquipmentList from "./EquipmentList";
+import SendButton from "./SendButton";
 import WorkerForm from "./WorkerForm";
 
 export default function Main() {
@@ -9,6 +10,7 @@ export default function Main() {
       <WorkerForm />
       <hr />
       <EquipmentList />
+      <SendButton />
       <AddItem />
     </div>
   );

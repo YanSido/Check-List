@@ -8,11 +8,16 @@ export const equipmentReducer = (state = initState, action) => {
     case "ADD_ITEM":
       return [...state, action.payload];
     case "UPDATE_ITEM":
-      let updatedState = state.map((item, index) => {
+      const updatedState = state.map((item, index) => {
         if (index === action.payload.index) item.currentQuantity = Number(action.payload.current);
         return item;
       });
       return [...updatedState];
+    case "DELETE_ITEM":
+      const updatedList = state.filter((item, index) => {
+        if (index !== action.payload.index) return item;
+      });
+      return [...updatedList];
     default:
       return state;
   }

@@ -11,10 +11,23 @@ export default function EquipmentList() {
     setFilter(e.target.value);
   };
 
-  const updateMissing = (current, index) => {
+  const updateMissing = (current, index, fullQuantity) => {
+    if (!current)
+      dispatch({
+        type: "UPDATE_ITEM",
+        payload: { fullQuantity, index },
+      });
+    else
+      dispatch({
+        type: "UPDATE_ITEM",
+        payload: { current, index },
+      });
+  };
+
+  const handleDelete = (index) => {
     dispatch({
-      type: "UPDATE_ITEM",
-      payload: { current, index },
+      type: "DELETE_ITEM",
+      payload: { index },
     });
   };
 
@@ -50,6 +63,40 @@ export default function EquipmentList() {
               return item.name.toLowerCase().includes(filter.toLowerCase());
             })
             .map((equipment, index) => {
+              if (equipment.addedByUser) {
+                return (
+                  <tr>
+                    <th scope="row">{index + 1}</th>
+                    <td>{equipment.name}</td>
+                    <td>{equipment.fullQuantity}</td>
+                    <td>
+                      <input
+                        class="text-center"
+                        onChange={(e) =>
+                          updateMissing(e.target.value, index, equipment.fullQuantity)
+                        }
+                        type="number"
+                        id={`item-${index}`}
+                        name="lquantity"
+                        placeholder="Enter current quantity"
+                        min={0}
+                      />
+                    </td>
+                    <td>{equipment.fullQuantity - equipment.currentQuantity || 0}</td>)
+                    <button
+                      style={{
+                        color: "white",
+                        backgroundColor: "red",
+                        paddingLeft: "10px",
+                        paddingRight: "10px",
+                      }}
+                      onClick={() => handleDelete(index)}
+                    >
+                      X
+                    </button>
+                  </tr>
+                );
+              }
               return (
                 <tr>
                   <th scope="row">{index + 1}</th>
@@ -58,7 +105,7 @@ export default function EquipmentList() {
                   <td>
                     <input
                       class="text-center"
-                      onChange={(e) => updateMissing(e.target.value, index)}
+                      onChange={(e) => updateMissing(e.target.value, index, equipment.fullQuantity)}
                       type="number"
                       id={`item-${index}`}
                       name="lquantity"
@@ -66,7 +113,7 @@ export default function EquipmentList() {
                       min={0}
                     />
                   </td>
-                  <td>{equipment.fullQuantity - equipment.currentQuantity}</td>)
+                  <td>{equipment.fullQuantity - equipment.currentQuantity || 0}</td>)
                 </tr>
               );
             })}

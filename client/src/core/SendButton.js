@@ -1,10 +1,16 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { notify } from "react-notify-toast";
 
 export default function SendButton() {
   return (
     <div>
-      <button type="button" class="btn btn-outline-success">
+      <button
+        onClick={() => {
+          notify.show("Report Submitted Successfully", "success");
+        }}
+        type="submit"
+        class="btn btn-outline-success"
+      >
         Send
       </button>
     </div>

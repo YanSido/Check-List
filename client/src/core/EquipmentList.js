@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Form } from "react-bootstrap";
 
 export default function EquipmentList() {
   const dispatch = useDispatch();
   const fullEquipmentList = useSelector((state) => state);
-  const [missing, setMissing] = useState(0);
   const [filter, setFilter] = useState("");
 
-  const handleChange = (e) => {
+  const searchFilter = (e) => {
     setFilter(e.target.value);
+  };
+
+  const updateMissing = (current, index) => {
+    dispatch({
+      type: "UPDATE_ITEM",
+      payload: { current, index },
+    });
   };
 
   return (
@@ -19,7 +25,7 @@ export default function EquipmentList() {
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control
               onChange={(e) => {
-                handleChange(e);
+                searchFilter(e);
               }}
               value={filter}
               type="text"
@@ -52,13 +58,15 @@ export default function EquipmentList() {
                   <td>
                     <input
                       class="text-center"
-                      type="text"
-                      id="lquantity"
+                      onChange={(e) => updateMissing(e.target.value, index)}
+                      type="number"
+                      id={`item-${index}`}
                       name="lquantity"
                       placeholder="Enter current quantity"
+                      min={0}
                     />
                   </td>
-                  <td>{missing}</td>
+                  <td>{equipment.fullQuantity - equipment.currentQuantity}</td>)
                 </tr>
               );
             })}

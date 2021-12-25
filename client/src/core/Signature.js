@@ -12,6 +12,7 @@ export default function Signature() {
           marginRight: "auto",
           border: "2px solid",
           width: "25%",
+          height: "25$",
           marginBottom: "50px",
         }}
       >

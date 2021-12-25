@@ -1,6 +1,3 @@
-export const filterList = (name) => (dispatch, getState) => {
-  if (!name) dispatch({ type: "INITIAL_DATA" });
-  else {
-    dispatch({ type: "FILTER_LIST", name: name });
-  }
+export const addItem = (item) => (dispatch, getState) => {
+  dispatch({ type: "ADD_ITEM", payload: item });
 };

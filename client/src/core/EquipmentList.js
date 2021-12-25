@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Form } from "react-bootstrap";
-import { filterList } from "../contexts/actions";
 
 export default function EquipmentList() {
   const dispatch = useDispatch();

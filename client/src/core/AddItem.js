@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Container } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { addItem } from "../contexts/actions";
 
 export default function AddItem() {
+  const dispatch = useDispatch();
+  const nameInputEl = useRef();
+  const fullQuantityInputEl = useRef();
+  const currentQuantityInputEl = useRef();
+
+  const handleClick = () => {
+    const name = nameInputEl.current.value;
+    const fullQuantity = fullQuantityInputEl.current.value;
+    const currentQuantity = currentQuantityInputEl.current.value;
+    if (/^\d+$/.test(fullQuantity) && /^\d+$/.test(currentQuantity) && name)
+      dispatch({
+        type: "ADD_ITEM",
+        payload: { name: name, fullQuantity: fullQuantity, currentQuantity: currentQuantity },
+      });
+  };
+
   return (
     <Container>
       <h2>Add item:</h2>
@@ -12,6 +30,7 @@ export default function AddItem() {
             Item's name
           </label>
           <input
+            ref={nameInputEl}
             type="name"
             class="form-control"
             id="exampleInputItemName"
@@ -25,6 +44,7 @@ export default function AddItem() {
             Full quantity
           </label>
           <input
+            ref={fullQuantityInputEl}
             type="text"
             class="form-control"
             id="exampleInputFullQuantity"
@@ -37,6 +57,7 @@ export default function AddItem() {
             Current quantity
           </label>
           <input
+            ref={currentQuantityInputEl}
             type="text"
             class="form-control"
             id="exampleInputCurrentQuantity"
@@ -45,7 +66,14 @@ export default function AddItem() {
           />
         </div>
 
-        <button type="submit" class="btn btn-primary">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            handleClick();
+          }}
+          type="submit"
+          class="btn btn-primary"
+        >
           Add item
         </button>
       </form>

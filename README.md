@@ -28,3 +28,4 @@ Github: [@Yan Sidorenko](https://github.com/YanSido)
 
 Project Link: [Sido's Check-list](https://github.com/YanSido/Check-List)
 
+Heroku: [https://sido-check-list.herokuapp.com/](https://sido-check-list.herokuapp.com/)

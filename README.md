@@ -1,6 +1,6 @@
 # Welcome to Sido's Check list App
 
-![Example](./example.png)
+![Example](./Example.png)
 
 ## Table of contents
 * [General info](#general-info)
